@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/theiasecurity/!svn/ver/19/Helios/src/com/theiasec/helios/core/managers
+END
+SocketPacketManager.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/theiasecurity/!svn/ver/19/Helios/src/com/theiasec/helios/core/managers/SocketPacketManager.groovy
+END
+CommunicationManager.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/theiasecurity/!svn/ver/7/Helios/src/com/theiasec/helios/core/managers/CommunicationManager.groovy
+END
+ModuleManager.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/theiasecurity/!svn/ver/17/Helios/src/com/theiasec/helios/core/managers/ModuleManager.groovy
+END
+TestCommunicationManager.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/theiasecurity/!svn/ver/17/Helios/src/com/theiasec/helios/core/managers/TestCommunicationManager.groovy
+END
+AlertManager.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/theiasecurity/!svn/ver/7/Helios/src/com/theiasec/helios/core/managers/AlertManager.groovy
+END
+ConfigurationManager.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/theiasecurity/!svn/ver/19/Helios/src/com/theiasec/helios/core/managers/ConfigurationManager.groovy
+END
+PacketManager.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/theiasecurity/!svn/ver/19/Helios/src/com/theiasec/helios/core/managers/PacketManager.groovy
+END
+SerialPacketManager.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/theiasecurity/!svn/ver/19/Helios/src/com/theiasec/helios/core/managers/SerialPacketManager.groovy
+END
+ZoneManager.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/theiasecurity/!svn/ver/11/Helios/src/com/theiasec/helios/core/managers/ZoneManager.groovy
+END

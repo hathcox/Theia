@@ -1,0 +1,38 @@
+package com.theiasec.helios.core.modules
+
+import com.theiasec.helios.core.communication.Packet
+import com.theiasec.helios.core.modules.Module
+import com.theiasec.helios.core.managers.CommunicationManager
+
+class TestModule extends Module {
+/*
+ * This is a debug module whose only purpose to is test Helios functionality
+ */
+
+	public TestModule(CommunicationManager communicationManager) {
+		this.communicationManager = communicationManager 
+	
+	}
+	
+	//This module should deal with the packet and return a packet should it need to be sent to Zone Manager
+	@Override
+	public Packet filterPacket(Packet packet) {
+		//If we got a initialize packet from helios
+		if(packet.status == "00FF") {
+			//Check and make sure that the device Id is the same we have on record
+			this.isInitialized = true
+		}
+		return null;
+	}
+
+	@Override
+	public void initialize(String deviceId) {
+		//In the future this should send the packet [0000 DEVICEID 1 1000 DATA] 
+		this.deviceId = deviceId
+		this.deviceIdSet = true
+		//Make a packet with the device Id and send it to our shit
+		Packet packet = new Packet("0003"+deviceId+"1100000000000000000000000", this.communicationManager.packetManager)
+		communicationManager.sendPacket(packet)
+	}
+
+}

@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/theiasecurity/!svn/ver/15/Helios/lib
+END
+guice-assistedinject-3.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/theiasecurity/!svn/ver/3/Helios/lib/guice-assistedinject-3.0.jar
+END
+javax.inject.jar
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/theiasecurity/!svn/ver/3/Helios/lib/javax.inject.jar
+END
+guice-jmx-3.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/theiasecurity/!svn/ver/3/Helios/lib/guice-jmx-3.0.jar
+END
+guice-throwingproviders-3.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/theiasecurity/!svn/ver/3/Helios/lib/guice-throwingproviders-3.0.jar
+END
+aopalliance.jar
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/theiasecurity/!svn/ver/3/Helios/lib/aopalliance.jar
+END
+guice-3.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/theiasecurity/!svn/ver/3/Helios/lib/guice-3.0.jar
+END
+guice-spring-3.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/theiasecurity/!svn/ver/3/Helios/lib/guice-spring-3.0.jar
+END
+guice-struts2-plugin-3.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/theiasecurity/!svn/ver/3/Helios/lib/guice-struts2-plugin-3.0.jar
+END
+guice-jndi-3.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/theiasecurity/!svn/ver/3/Helios/lib/guice-jndi-3.0.jar
+END
+guice-servlet-3.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/theiasecurity/!svn/ver/3/Helios/lib/guice-servlet-3.0.jar
+END
+guice-grapher-3.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/theiasecurity/!svn/ver/3/Helios/lib/guice-grapher-3.0.jar
+END
+guice-multibindings-3.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/theiasecurity/!svn/ver/3/Helios/lib/guice-multibindings-3.0.jar
+END
+RXTXcomm.jar
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/theiasecurity/!svn/ver/15/Helios/lib/RXTXcomm.jar
+END
+guice-persist-3.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/theiasecurity/!svn/ver/3/Helios/lib/guice-persist-3.0.jar
+END

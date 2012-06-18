@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/theiasecurity/!svn/ver/19/Helios/src/com/theiasec/helios/core/communication
+END
+SendThread.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/theiasecurity/!svn/ver/7/Helios/src/com/theiasec/helios/core/communication/SendThread.groovy
+END
+SerialSendThread.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/theiasecurity/!svn/ver/17/Helios/src/com/theiasec/helios/core/communication/SerialSendThread.groovy
+END
+SocketReceiveThread.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/theiasecurity/!svn/ver/15/Helios/src/com/theiasec/helios/core/communication/SocketReceiveThread.groovy
+END
+Packet.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/theiasecurity/!svn/ver/11/Helios/src/com/theiasec/helios/core/communication/Packet.groovy
+END
+RecieveThread.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/theiasecurity/!svn/ver/6/Helios/src/com/theiasec/helios/core/communication/RecieveThread.groovy
+END
+SerialRecieveThread.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/theiasecurity/!svn/ver/18/Helios/src/com/theiasec/helios/core/communication/SerialRecieveThread.groovy
+END
+SocketSendThread.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/theiasecurity/!svn/ver/19/Helios/src/com/theiasec/helios/core/communication/SocketSendThread.groovy
+END

@@ -1,0 +1,50 @@
+package com.theiasec.helios.core.communication
+
+import com.theiasec.helios.core.managers.PacketManager
+
+class SocketReceiveThread extends RecieveThread {
+		ServerSocket server
+		PacketManager packetManager
+	
+	public SocketReceiveThread(int port = 65337, PacketManager packetManager) {
+		this.packetManager = packetManager
+		//bind to an address
+		server = new ServerSocket(port)
+		this.thread.start {
+			//Just pull input from the socket
+			while(true) {
+				server.accept { socket ->
+					socket.withStreams { input, output ->
+						input.eachLine {
+							//Dont take null packets
+							if(it != null) {
+								this.queue.add(it)
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	
+	//This currently only grabs the top element
+	//THIS IS A DESTRUCTIVE READ
+	@Override
+	public Packet readPacket() {
+		if(this.queue.size() > 0) {
+			def currentPacket = queue[0]
+			//Make a packet from what we got
+			Packet packet = new Packet(currentPacket, packetManager)
+			queue.remove(0)
+			return packet
+		}
+	}
+
+	@Override
+	public Packet pullPacket() {
+		//TODO: Implement
+		return null;
+	}
+
+}

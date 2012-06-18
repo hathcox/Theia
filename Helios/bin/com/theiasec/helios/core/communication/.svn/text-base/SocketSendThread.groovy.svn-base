@@ -1,0 +1,22 @@
+package com.theiasec.helios.core.communication
+
+class SocketSendThread extends SendThread {
+
+	@Override
+	public void pushPacket(Packet packet) {
+
+	}
+
+	@Override
+	public boolean writePacket(Packet packet) {
+		def socket = new Socket("localhost", 65337);
+		socket << "$packet.rawData\n"
+		socket.close()
+	}
+
+	@Override
+	public void popPacket() {
+
+	}
+
+}

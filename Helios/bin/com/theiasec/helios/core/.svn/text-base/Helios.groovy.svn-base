@@ -1,0 +1,31 @@
+package com.theiasec.helios.core
+
+import com.google.inject.Guice
+import com.theiasec.helios.core.managers.SocketPacketManager
+import com.theiasec.helios.core.managers.TestCommunicationManager
+import com.theiasec.helios.core.managers.ModuleManager
+import com.theiasec.helios.core.managers.AlertManager
+import com.theiasec.helios.core.managers.ConfigurationManager
+import com.theiasec.helios.core.managers.ZoneManager
+
+@com.google.inject.Singleton
+public class Helios {
+	//Used for dependency injection for managers
+	def injector = Guice.createInjector()
+	//Random generator for all managers
+	def randomGenerator = new Random()
+	//All managers, created for us using singleton 
+	def packetManager = injector.getInstance(SocketPacketManager.class)
+	def communicationManager = new TestCommunicationManager(packetManager)
+	def moduleManager = new ModuleManager(communicationManager, randomGenerator)
+	def alertManager = injector.getInstance(AlertManager.class)
+	def configurationManager = new ConfigurationManager("/home/haddaway/Workspaces/sts/Helios/configs/config.xml", injector, moduleManager, communicationManager)
+	def zoneManager = injector.getInstance(ZoneManager.class)
+	
+	void start() {
+		//Do all the things
+		moduleManager.start()
+
+	}
+	
+}

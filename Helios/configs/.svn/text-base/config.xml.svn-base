@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helios>
+<!-- Zones Configuration -->
+	<zones>
+		<zone name="A" next="">
+			<authenticationModules>
+				<module type="Test" />
+			</authenticationModules>
+			<sensorModules>
+				<module type="Test" neverTrip="true" />
+			</sensorModules>
+			<actionModules>
+				<module type="Test" />
+			</actionModules>
+		</zone>
+	</zones>
+
+<!-- Alert Level Configurations -->
+<!--  
+
+	This is old, wait for an update
+
+	<alertLevels>
+		<alertLevel name="default" level="0">
+			<action value="1" module="Test">
+				<result>Do nada</result>
+			</action>
+			<action value="2" module="Test">
+				<result>Kill Bitches</result>
+			</action>
+		</alertLevel>
+	</alertLevels>
+-->	
+	
+<!-- Packet Configurations -->
+<!--
+  ... 
+  ... Use this section to describe the makeup of the packets you would like to use in helios
+  ...
+  ... start and end attributes declare the string position of where a given data section is
+  ...
+-->
+	<packetConfig baseSize="14">
+		<deviceType start="0" end="4" />
+		<deviceId start="4" end="8" />
+		<priority start="8" end="9" />
+		<status start="9" end="13" />
+		<data start="13" />
+	</packetConfig>
+
+</helios>
