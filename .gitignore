@@ -2,6 +2,5 @@
 *.pyc
 
 # Package Files #
-*.jar
 *.war
 *.ear
