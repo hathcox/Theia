@@ -11,7 +11,7 @@ import platform
 
 from hashlib import sha256
 
-SERVER = '172.16.1.11'
+SERVER = 'localhost'
 SERVER_PORT = 5300
 LINE_LENGTH = 65
 BUFFER_SIZE = 34
