@@ -8,7 +8,7 @@ import random
 import urllib
 import httplib
 import platform
-
+import RPi.GPIO as GPIO
 from hashlib import sha256
 
 SERVER = 'localhost'
@@ -21,6 +21,8 @@ INITIALIZATION = "0001"
 HEARTBEAT = "00FF"
 EMPTY_DATA = "00000000000000000000"
 SHUTDOWN = "DEAD"
+DOOR_OPEN = "0301"
+DOOR_CLOSED = "0302"
 
 class ModuleClient():
     ''' This is the Base Module Template '''
@@ -34,7 +36,15 @@ class ModuleClient():
         # Always starts at 0000
         self.device_id = "0000"
         # Debug device type
-        self.device_type = "0000"
+        self.device_type = "000A"
+        self.__setup_GPIO__()
+
+    def __setup_GPIO__(self):
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(9, GPIO.IN)
+        GPIO.setup(11, GPIO.OUT)
+        GPIO.output(11, GPIO.HIGH)
+
 
     def start(self):
         ''' Main entry point '''
@@ -56,9 +66,30 @@ class ModuleClient():
             self.__check_for_response__()
         while(True):
             self.__send_heartbeat__()
+            #Read the door's sensor 
+            inputValue = GPIO.input(9)
+            if inputValue:
+                self.__send_door__(DOOR_OPEN)
+            else:
+                self.__send_door__(DOOR_CLOSED)
 
         #Code to do the module specific stuff here!
         pass
+
+    def __send_door__(self, status = DOOR_OPEN):
+        ''' This will send the door is open command to helios '''
+        try:
+            self.sock.send(self.device_type + self.device_id + "1" + status + EMPTY_DATA + "\n")
+            sys.stdout.write("[*] Sent Heartbeat\n")
+            sys.stdout.flush()
+            time.sleep(1)
+        except KeyboardInterrupt:
+            self.send_shutdown()
+            sys.stdout.write("\r[!] User exit "+str(LINE_LENGTH * ' ')+'\n')
+            sys.stdout.flush()
+            os._exit(0)
+        except Exception as e:
+            print e
 
     def __send_heartbeat__(self):
         try:
