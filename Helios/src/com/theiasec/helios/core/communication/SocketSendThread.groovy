@@ -9,6 +9,7 @@ class SocketSendThread extends SendThread {
 	@Override
 	public boolean writePacket(Packet packet) {
 		try {
+			println packet.rawData
 			packet.source << "$packet.rawData\n"
 			packet.source.getOutputStream().flush()
 		} catch (SocketException e) {

@@ -17,7 +17,9 @@ class DoorIsOpenModule extends Module {
 	 */
 	boolean doorStatus
 
-	public DoorIsOpenModule() {}
+	public DoorIsOpenModule() {
+		moduleType = ModuleType.SENSOR
+	}
 	
 	//This module should deal with the packet and return a packet should it need to be sent to Zone Manager
 	@Override
@@ -27,6 +29,7 @@ class DoorIsOpenModule extends Module {
 		//If we got a initialize packet from helios
 		if(packet.status == "00FF") {
 			//Check and make sure that the device Id is the same we have on record
+			this.deviceType = packet.deviceType
 			this.isInitialized = true
 		} else if (packet.status == "DEAD") {
 			//Unregister the the module
@@ -68,6 +71,11 @@ class DoorIsOpenModule extends Module {
 	void unregister(Packet packet){
 		ModuleManager.getInstance().removeModule(this)
 		this.location.close()
+	}
+
+	@Override
+	public void performAction() {
+		//Do nothing
 	}
 
 }

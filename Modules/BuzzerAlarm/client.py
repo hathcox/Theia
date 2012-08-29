@@ -8,7 +8,7 @@ import random
 import urllib
 import httplib
 import platform
-
+#import RPi.GPIO as GPIO
 from hashlib import sha256
 
 SERVER = 'localhost'
@@ -21,6 +21,7 @@ INITIALIZATION = "0001"
 HEARTBEAT = "00FF"
 EMPTY_DATA = "00000000000000000000"
 SHUTDOWN = "DEAD"
+START_ALARM = "0707"
 
 class ModuleClient():
     ''' This is the Base Module Template '''
@@ -34,7 +35,12 @@ class ModuleClient():
         # Always starts at 0000
         self.device_id = "0000"
         # Debug device type
-        self.device_type = "0000"
+        self.device_type = "0010"
+        self.__setup_GPIO__()
+
+    def __setup_GPIO__(self):
+        #GPIO.setmode(GPIO.BCM)
+        pass
 
     def start(self):
         ''' Main entry point '''
@@ -48,6 +54,7 @@ class ModuleClient():
             sys.stdout.write("[!] Unable to connect to helios at '{0}' : '{1}'\n".format(self.helios_ip, self.helios_port))
             sys.stdout.flush()
             os._exit(0)
+
     
     def __start__(self):
         ''' Connect to helios and probe for packets '''
@@ -55,8 +62,9 @@ class ModuleClient():
         while(self.initialized == False):
             self.__send_init__()
             self.__check_for_response__()
-        while(True):
             self.__send_heartbeat__()
+        while(True):
+            self.__check_for_start_buzzer__()
 
         #Code to do the module specific stuff here!
         pass
@@ -81,6 +89,12 @@ class ModuleClient():
             self.device_id = packet[4:8]
             self.initialized = True
             sys.stdout.write("[*] Successfully Initialized Module!\n")
+
+    def __check_for_start_buzzer__(self):
+        packet = self.sock.recv(BUFFER_SIZE)
+        print packet
+        if (packet[8:12] == "7070"):
+            sys.stdout.write("[*] Starting Buzzer\n")
 
     def __send_init__(self):
         try:

@@ -1,14 +1,17 @@
 package com.theiasec.helios.core.managers
 
+import com.theiasec.helios.core.Helios
 import com.theiasec.helios.core.alerts.Alert
 import com.theiasec.helios.core.alerts.AlertListener
+import com.theiasec.helios.core.modules.Module.ModuleType
+
 
 class AlertManager {
 
 	static AlertManager alertManager
 	LinkedList<Alert> alertQueue
 	ArrayList<AlertListener> alertListeners
-	
+		
 	//Singleton
 	public static AlertManager getInstance() {
 		if (alertManager == null) {
@@ -25,7 +28,28 @@ class AlertManager {
 	
 	//This creates and alert and fires an event to everyone listening
 	public addAlert(int errorCode) {
-		fireAlert(new Alert(errorCode))
+		Alert alert = new Alert(errorCode)
+		sendAlertToModules(alert)
+		fireAlert(alert)
+	}
+	
+	/**
+	 * This will call performAction on every registered action module
+	 * @param alert
+	 * @return
+	 */
+	private sendAlertToModules(Alert alert) {
+		// The system is not disarmed
+		if(!Helios.getInstance().checkDisarmed()) {
+			//Iterate over every module
+			ModuleManager.getInstance().modules.each {
+				//Find all modules that are of type action
+				if (it?.moduleType == ModuleType.ACTION) {
+					//Call perform action
+					it?.performAction()
+				}
+			}
+		}
 	}
 	
 	//Add this to the list

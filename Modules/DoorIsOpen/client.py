@@ -55,8 +55,9 @@ class ModuleClient():
         try:
             self.sock.connect((self.helios_ip, self.helios_port))
         except Exception as e:
-            sys.stdout.write("Unable to connect to helios at '%s' : '%d'", self.helios_ip, self.helios_port)
-
+            sys.stdout.write("[!] Unable to connect to helios at '{0}' : '{1}'\n".format(self.helios_ip, self.helios_port))
+            sys.stdout.flush()
+            os._exit(0)
     
     def __start__(self):
         ''' Connect to helios and probe for packets '''
@@ -72,6 +73,7 @@ class ModuleClient():
                 self.__send_door__(DOOR_OPEN)
             else:
                 self.__send_door__(DOOR_CLOSED)
+
 
         #Code to do the module specific stuff here!
         pass

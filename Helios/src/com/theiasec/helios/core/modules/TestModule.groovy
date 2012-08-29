@@ -2,7 +2,6 @@ package com.theiasec.helios.core.modules
 
 
 import com.theiasec.helios.core.communication.Packet
-import com.theiasec.helios.core.modules.Module
 import com.theiasec.helios.core.managers.ModuleManager;
 import com.theiasec.helios.core.managers.SocketPacketManager;
 import com.theiasec.helios.core.managers.TestCommunicationManager;
@@ -22,6 +21,7 @@ class TestModule extends Module {
 		//If we got a initialize packet from helios
 		if(packet.status == "00FF") {
 			//Check and make sure that the device Id is the same we have on record
+			this.deviceType = packet.deviceType
 			this.isInitialized = true
 		} else if (packet.status == "DEAD") {
 			//Unregister the the module
@@ -48,6 +48,11 @@ class TestModule extends Module {
 	void unregister(Packet packet){
 		ModuleManager.getInstance().removeModule(this)
 		this.location.close()
+	}
+
+	@Override
+	public void performAction() {
+		//Do nothing
 	}
 
 }

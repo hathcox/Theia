@@ -4,12 +4,13 @@ import com.theiasec.helios.core.Helios;
 import com.theiasec.helios.core.alerts.Alert;
 import com.theiasec.helios.core.alerts.AlertListener;
 
+
 public class Main implements AlertListener {
 
 	private static Helios helios;
 
 	public Main() {
-		helios = new Helios();
+		helios = Helios.getInstance();
 		helios.addAlertListener(this);
 		helios.start();
 	}
@@ -22,5 +23,6 @@ public class Main implements AlertListener {
 	public void onAlert(Alert alert) {
 		System.out.println(alert.getErrorReason());
 	}
+
 
 }
