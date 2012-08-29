@@ -7,7 +7,6 @@ import com.theiasec.helios.core.communication.Packet
  * This communication manager connects to a port and should model some basic behavior
  */
 
-@com.google.inject.Singleton
 class TestCommunicationManager extends CommunicationManager {
 
 	private TestCommunicationManager() {

@@ -3,16 +3,21 @@ package com.theiasec.helios.core.modules
 
 import com.theiasec.helios.core.communication.Packet
 import com.theiasec.helios.core.modules.Module
+import com.theiasec.helios.core.managers.AlertManager;
 import com.theiasec.helios.core.managers.ModuleManager;
 import com.theiasec.helios.core.managers.SocketPacketManager;
 import com.theiasec.helios.core.managers.TestCommunicationManager;
 
-class TestModule extends Module {
+class DoorIsOpenModule extends Module {
 /*
- * This is a debug module whose only purpose to is test Helios functionality
+ * This is the door is open module, this will recieve an update each time the door status changes
  */
+	/* false means the door is closed
+	 * true means the door is open
+	 */
+	boolean doorStatus
 
-	public TestModule() {}
+	public DoorIsOpenModule() {}
 	
 	//This module should deal with the packet and return a packet should it need to be sent to Zone Manager
 	@Override
@@ -27,7 +32,22 @@ class TestModule extends Module {
 			//Unregister the the module
 			println "Unregistering module [${this.deviceId}-${this.class}]"
 			unregister(packet)
-		} 
+		} else if (packet.status == "0301") {
+			if(doorStatus == false) {
+				println "[~~]WARNING: Setting the Door to Open, if this wasn't already open an alert will be raised"
+				//Raise alert
+				AlertManager.getInstance().addAlert(1)
+				doorStatus = true 
+			}
+		}
+		else if (packet.status == "0302") {
+			if(doorStatus == true) {
+				println "[~~]WARNING: Setting the Door to Closed, if this wasn't already open an alert will be raised"
+				//Raise alert
+				AlertManager.getInstance().addAlert(1)
+				doorStatus = false
+			}
+		}
 		return null;
 	}
 

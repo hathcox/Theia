@@ -80,7 +80,7 @@ class ModuleClient():
         ''' This will send the door is open command to helios '''
         try:
             self.sock.send(self.device_type + self.device_id + "1" + status + EMPTY_DATA + "\n")
-            sys.stdout.write("[*] Sent Heartbeat\n")
+            sys.stdout.write("[*] Sent "+status+"\n")
             sys.stdout.flush()
             time.sleep(1)
         except KeyboardInterrupt:

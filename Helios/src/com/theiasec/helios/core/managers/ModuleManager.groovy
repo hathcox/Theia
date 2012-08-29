@@ -67,6 +67,7 @@ class ModuleManager {
 					String randomId = null
 					def existingModule = 1
 					if(!module.deviceIdSet) {
+						//Loop until we found a random number we can use
 						while(existingModule != null) {
 							randomId = Integer.toHexString(randomGenerator.nextInt(highestModuleId)).toUpperCase()
 							println "Random number $randomId"

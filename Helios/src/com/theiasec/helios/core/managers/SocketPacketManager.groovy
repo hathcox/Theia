@@ -3,7 +3,7 @@ package com.theiasec.helios.core.managers
 import com.theiasec.helios.core.communication.SocketReceiveThread;
 import com.theiasec.helios.core.communication.SocketSendThread
 
-@com.google.inject.Singleton
+
 class SocketPacketManager extends PacketManager {
 
 	private SocketPacketManager() {

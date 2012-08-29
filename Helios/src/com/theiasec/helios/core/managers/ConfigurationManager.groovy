@@ -2,7 +2,6 @@ package com.theiasec.helios.core.managers
 
 import com.theiasec.helios.core.zones.Zone
 
-@com.google.inject.Singleton
 class ConfigurationManager {
 	//Loads all the config files
 	//Passes sections to managers
@@ -14,11 +13,11 @@ class ConfigurationManager {
 	def communicationManager
 	
 	
-	public ConfigurationManager(String configurationLocation, def injector, ModuleManager moduleManager, CommunicationManager communicationManager) {
-		zoneManager = injector.getInstance(ZoneManager.class)
-		this.moduleManager = moduleManager 
+	public ConfigurationManager(String configurationLocation) {
+		zoneManager = ZoneManager.getInstance()
+		this.moduleManager = ModuleManager.getInstance()
 		this.configurationLocation = configurationLocation
-		this.communicationManager = communicationManager
+		this.communicationManager = TestCommunicationManager.getInstance()
 		File configurationFile = new File(configurationLocation)
 		xmlContent = new XmlParser().parseText(configurationFile.getText())
 		loadConfigurations()

@@ -1,6 +1,6 @@
 package com.theiasec.helios.core
 
-import com.google.inject.Guice
+import com.theiasec.helios.core.alerts.AlertListener
 import com.theiasec.helios.core.managers.SocketPacketManager
 import com.theiasec.helios.core.managers.TestCommunicationManager
 import com.theiasec.helios.core.managers.ModuleManager
@@ -8,22 +8,24 @@ import com.theiasec.helios.core.managers.AlertManager
 import com.theiasec.helios.core.managers.ConfigurationManager
 import com.theiasec.helios.core.managers.ZoneManager
 
-@com.google.inject.Singleton
 public class Helios {
-	//Used for dependency injection for managers
-	def injector = Guice.createInjector()
 	//All managers, created for us using singleton 
 	def packetManager = SocketPacketManager.getInstance()
 	def communicationManager = new TestCommunicationManager()
 	def moduleManager = ModuleManager.getInstance()
-	def alertManager = injector.getInstance(AlertManager.class)
-	def configurationManager = new ConfigurationManager("configs/config.xml", injector, moduleManager, communicationManager)
-	def zoneManager = injector.getInstance(ZoneManager.class)
+	def alertManager = AlertManager.getInstance()
+	def configurationManager = new ConfigurationManager("configs/config.xml")
+	def zoneManager = ZoneManager.getInstance()
 	
 	void start() {
 		//Do all the things
 		moduleManager.start()
 
+	}
+	
+	//Conveince method to add listeners
+	public void addAlertListener(AlertListener listener) {
+		alertManager.addAlertListener(listener)
 	}
 	
 }

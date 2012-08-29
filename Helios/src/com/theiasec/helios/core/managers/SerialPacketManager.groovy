@@ -9,7 +9,6 @@ import com.theiasec.helios.core.communication.SerialRecieveThread
 import com.theiasec.helios.core.communication.SerialSendThread
 
 //TODO: This should now be abstract, and called SerialPacketManager
-@com.google.inject.Singleton
 class SerialPacketManager extends PacketManager {
 	// Connect to the serial port
 	//Sorry this is hardcoded
