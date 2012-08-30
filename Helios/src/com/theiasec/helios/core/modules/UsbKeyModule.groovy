@@ -1,5 +1,6 @@
 package com.theiasec.helios.core.modules
 
+import com.theiasec.helios.core.Helios
 import com.theiasec.helios.core.communication.Packet;
 import com.theiasec.helios.core.managers.ModuleManager
 import com.theiasec.helios.core.managers.SocketPacketManager
@@ -31,7 +32,14 @@ class UsbKeyModule extends Module{
 			//Unregister the the module
 			println "Unregistering module [${this.deviceId}-${this.class}]"
 			unregister(packet)
-		} 
+		} else if (packet.status == "9898") {
+			//We got a key
+			//Check to make sure its the key that we expected
+			if (packet.data.contains(CORRECT_VALUE)) {
+				//Disable Helios for the specified timeout
+				Helios.getInstance().disarm()
+			}
+		}
 		return null;
 	}
 

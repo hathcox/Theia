@@ -11,7 +11,7 @@ import com.theiasec.helios.core.managers.ZoneManager
 public class Helios {
 	
 	static Helios helios
-	Date lastDisarm
+	Date lastDisarm = new Date()
 	
 	// How long until we should consider the system re-armed in milliseconds
 	long disarmDurration = 30 * 1000
@@ -33,7 +33,7 @@ public class Helios {
 	public boolean checkDisarmed() {
 		Date now = new Date()
 		//If we still have time before the system is disarmed
-		if (lastDisarm.time+disarmDurration > now.time) {
+		if (lastDisarm?.time+disarmDurration > now.time) {
 			return true
 		}
 		return false
@@ -54,6 +54,12 @@ public class Helios {
 		//Do all the things
 		moduleManager.start()
 
+	}
+	
+	//Disarm the system
+	void disarm() {
+		println "[**] Helios disarmed for ["+disarmDurration/1000+"] seconds!"
+		lastDisarm = new Date()
 	}
 	
 	//Conveince method to add listeners
