@@ -8,10 +8,9 @@ import random
 import urllib
 import httplib
 import platform
-#import RPi.GPIO as GPIO
 from hashlib import sha256
 
-SERVER = 'localhost'
+SERVER = '192.168.1.45'
 SERVER_PORT = 5300
 LINE_LENGTH = 65
 BUFFER_SIZE = 34
@@ -39,10 +38,6 @@ class ModuleClient():
         self.device_type = "0011"
         self.__setup_GPIO__()
 
-    def __setup_GPIO__(self):
-        #GPIO.setmode(GPIO.BCM)
-        pass
-
     def start(self):
         ''' Main entry point '''
         self.__connect_to_helios__()
@@ -65,7 +60,13 @@ class ModuleClient():
             self.__check_for_response__()
         while(True):
             self.__send_heartbeat__()
-            self.__send_key__("PENIS")
+            if os.path.exists("/home/pi/tempKey/key.txt"):
+                fileHandle = open("/home/pi/tempKey/key.txt", 'r')
+                tempKey = fileHandle.read()
+                fileHandle.close()
+                os.remove("/home/pi/tempKey/key.txt")
+                self.__send_key__(tempKey)
+            time.sleep(1)
 
         #Code to do the module specific stuff here!
         pass
@@ -92,7 +93,6 @@ class ModuleClient():
             self.sock.send(self.device_type + self.device_id + "1" + HEARTBEAT + EMPTY_DATA + "\n")
             sys.stdout.write("[*] Sent Heartbeat\n")
             sys.stdout.flush()
-            time.sleep(1)
         except KeyboardInterrupt:
             self.send_shutdown()
             sys.stdout.write("\r[!] User exit "+str(LINE_LENGTH * ' ')+'\n')

@@ -11,7 +11,7 @@ import platform
 import RPi.GPIO as GPIO
 from hashlib import sha256
 
-SERVER = 'localhost'
+SERVER = '192.168.1.45'
 SERVER_PORT = 5300
 LINE_LENGTH = 65
 BUFFER_SIZE = 34
@@ -73,6 +73,7 @@ class ModuleClient():
                 self.__send_door__(DOOR_OPEN)
             else:
                 self.__send_door__(DOOR_CLOSED)
+            time.sleep(1)
 
 
         #Code to do the module specific stuff here!
@@ -98,7 +99,6 @@ class ModuleClient():
             self.sock.send(self.device_type + self.device_id + "1" + HEARTBEAT + EMPTY_DATA + "\n")
             sys.stdout.write("[*] Sent Heartbeat\n")
             sys.stdout.flush()
-            time.sleep(1)
         except KeyboardInterrupt:
             self.send_shutdown()
             sys.stdout.write("\r[!] User exit "+str(LINE_LENGTH * ' ')+'\n')
