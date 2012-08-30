@@ -8,7 +8,7 @@ import random
 import urllib
 import httplib
 import platform
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 from hashlib import sha256
 
 SERVER = 'localhost'
@@ -39,7 +39,9 @@ class ModuleClient():
         self.__setup_GPIO__()
 
     def __setup_GPIO__(self):
-        #GPIO.setmode(GPIO.BCM)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(11, GPIO.OUT)
+        GPIO.output(11, GPIO.LOW)
         pass
 
     def start(self):
@@ -95,6 +97,9 @@ class ModuleClient():
         print packet
         if (packet[8:12] == "7070"):
             sys.stdout.write("[*] Starting Buzzer\n")
+            GPIO.output(11, GPIO.HIGH)
+            time.sleep(5)
+            GPIO.output(11, GPIO.LOW)
 
     def __send_init__(self):
         try:
